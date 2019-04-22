@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/white"
+    tools:context=".Sell">
+
+    <!-- include toolbar here -->
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_dark">
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <EditText
+                android:id="@+id/med_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:hint="Medicine Name"
+                android:inputType="text"
+                android:textColorHint="@android:color/holo_blue_dark" />
+
+            <EditText
+                android:id="@+id/com_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:hint="Generic Name"
+                android:inputType="text"
+                android:textColorHint="@android:color/holo_blue_dark" />
+
+            <EditText
+                android:id="@+id/condition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:hint="Condition"
+                android:inputType="text"
+                android:textColorHint="@android:color/holo_blue_dark" />
+
+            <EditText
+                android:id="@+id/from"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:hint="From"
+                android:inputType="text"
+                android:textColorHint="@android:color/holo_blue_dark" />
+
+            <EditText
+                android:id="@+id/quantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:hint="Quantity"
+                android:inputType="number"
+                android:textColorHint="@android:color/holo_blue_dark"/>
+
+            <EditText
+                android:id="@+id/med_gram"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:hint="Amount (ml/gm)"
+                android:inputType="number"
+                android:textColorHint="@android:color/holo_blue_dark" />
+
+            <EditText
+                android:id="@+id/med_cost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:hint="Cost"
+                android:inputType="number"
+                android:textColorHint="@android:color/holo_blue_dark" />
+
+            <EditText
+                android:id="@+id/med_expiry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:hint="Expiry Date"
+                android:inputType="date"
+                android:textColorHint="@android:color/holo_blue_dark" />
+
+            <EditText
+                android:id="@+id/contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:hint="Contact"
+                android:inputType="phone"
+                android:textColorHint="@android:color/holo_blue_dark" />
+
+            <Button
+                android:id="@+id/btnSell"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="7dp"
+                android:text="SELL"
+                android:textStyle="bold"
+                android:background="@android:color/holo_blue_dark"
+                android:inputType="textCapWords"
+                android:textColor="@android:color/white"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

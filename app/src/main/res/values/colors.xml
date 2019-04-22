@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <!-- button colors in dashboard  -->
+
+    <color name="colorbtn1">#008080</color>
+    <color name="colorbtn2">#FF6347</color>
+    <color name="colorbtn3">#228B22</color>
+    <color name="colorbtn4">#DC143C</color>
+    <color name="colorbtn5">#4B0082</color>
+    <color name="colorbtn6">#FF1493</color>
+    <color name="colorbtn7">#FF8C00</color>
+</resources>

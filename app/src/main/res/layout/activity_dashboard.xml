@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/grid"
+    tools:context=".DashboardActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp">
+
+        <Button
+            android:id="@+id/loginBtn"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_margin="7dp"
+            android:gravity="center"
+            android:text="Log In"
+            android:inputType="textCapWords"
+            android:textSize="30sp"
+            android:background="@drawable/dash_btn_1"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_margin="7dp"
+            android:background="@drawable/dash_btn_2"
+            android:gravity="center"
+            android:text="Predict"
+            android:inputType="textCapWords"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_margin="7dp"
+            android:background="@drawable/dash_btn_3"
+            android:gravity="center"
+            android:text="List of Collection Centres"
+            android:inputType="textCapWords"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_margin="7dp"
+            android:background="@drawable/dash_btn_4"
+            android:gravity="center"
+            android:text="About"
+            android:inputType="textCapWords"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_margin="7dp"
+            android:gravity="center"
+            android:text="LOG IN"
+            android:textSize="30sp"
+            android:inputType="textCapWords"
+            android:background="@drawable/dash_btn_5"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_margin="7dp"
+            android:gravity="center"
+            android:text="LOG IN"
+            android:textSize="30sp"
+            android:inputType="textCapWords"
+            android:background="@drawable/dash_btn_6"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_margin="7dp"
+            android:gravity="center"
+            android:text="LOG IN"
+            android:textSize="30sp"
+            android:inputType="textCapWords"
+            android:background="@drawable/dash_btn_7"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+
+</ScrollView>

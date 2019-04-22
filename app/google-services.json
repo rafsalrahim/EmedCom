@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1099026691923",
+    "firebase_url": "https://emedcom-832c2.firebaseio.com",
+    "project_id": "emedcom-832c2",
+    "storage_bucket": "emedcom-832c2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1099026691923:android:7a4f70afd56e33d0",
+        "android_client_info": {
+          "package_name": "com.example.emedcom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1099026691923-v9tgm3gueku7puss26ibdppqqu57m173.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqmU-9qoo2fRZwbHDHMm7uX7KO8eefTIk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
