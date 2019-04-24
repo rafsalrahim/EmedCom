@@ -60,9 +60,13 @@ public class Home extends AppCompatActivity
         updateNavHeader();
 
         //default fragment for home
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+     /*   FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.container,new HomeFragment());
-        ft.commit();
+        ft.commit();    */
+
+      /*  Intent homeIntent = new Intent(getApplicationContext(), Home.class);
+        startActivity(homeIntent);
+        finish();   */
 
         navigationView.setCheckedItem(R.id.nav_home);
 
@@ -87,13 +91,7 @@ public class Home extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-       switch (item.getItemId()) {
 
-           case R.id.action_changepassword:
-               Toast.makeText(this, "Change Password", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Home.this,ChangePassword.class);
-                startActivity(intent);
-       }
        switch (item.getItemId()) {
 
            case R.id.action_buy:
@@ -130,15 +128,6 @@ public class Home extends AppCompatActivity
                startActivity(intent);
        }
 
-       switch (item.getItemId()) {
-
-           case R.id.action_delete:
-               Toast.makeText(this, "Delete Account", Toast.LENGTH_SHORT).show();
-               Intent intent = new Intent(Home.this,DeleteAccount.class);
-               startActivity(intent);
-       }
-
-
        return super.onOptionsItemSelected(item);
     }
     @SuppressWarnings("StatementWithEmptyBody")
@@ -147,15 +136,19 @@ public class Home extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
+         if (id == R.id.nav_home) {
 
             getSupportActionBar().setTitle("Home");
             Toast.makeText(this, "HOME", Toast.LENGTH_SHORT).show();
           //  getSupportFragmentManager().beginTransaction().replace(R.id.container,new HomeFragment()).commit();
 
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+          /*  FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.container,new HomeFragment());
-            ft.commit();
+            ft.commit();   */
+
+          Intent homeIntent = new Intent(getApplicationContext(), Home.class);
+          startActivity(homeIntent);
+          finish();
 
 
         } else if (id == R.id.nav_profile) {
@@ -167,15 +160,27 @@ public class Home extends AppCompatActivity
             startActivity(i);
             finish();  */
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.container,new ProfileFragment()).commit();
 
-        } else if (id == R.id.nav_settings) {
+             Intent profileIntent = new Intent(getApplicationContext(), Profile.class);
+             startActivity(profileIntent);
+             finish();
 
-            getSupportActionBar().setTitle("Settings");
-            Toast.makeText(this, "SETTINGS", Toast.LENGTH_SHORT).show();
-            getSupportFragmentManager().beginTransaction().replace(R.id.container,new SettingsFragment()).commit();
+
+             // getSupportFragmentManager().beginTransaction().replace(R.id.container,new ProfileFragment()).commit();
 
         }
+         else if (id == R.id.nav_settings) {
+
+
+             Intent profileIntent = new Intent(getApplicationContext(), Settings.class);
+             startActivity(profileIntent);
+             finish();
+
+         /*   getSupportActionBar().setTitle("Settings");
+            Toast.makeText(this, "SETTINGS", Toast.LENGTH_SHORT).show();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,new SettingsFragment()).commit();
+*/
+         }
          else if(id == R.id.nav_signout) {
 
             FirebaseAuth.getInstance().signOut();

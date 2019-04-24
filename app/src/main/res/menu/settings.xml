@@ -3,33 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_buy"
+        android:id="@+id/action_feedback"
         android:orderInCategory="100"
-        android:title="Buy Medicine"
+        android:title="Help and Feedback"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_sell"
+        android:id="@+id/action_complaint"
         android:orderInCategory="100"
-        android:title="Sell Medicine"
+        android:title="Complaint Portal"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_rewards"
+        android:id="@+id/action_night"
         android:orderInCategory="100"
-        android:title="Rewards"
+        android:title="Night Mode"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_orders"
+        android:id="@+id/action_view_history"
         android:orderInCategory="100"
-        android:title="My Orders"
+        android:title="View History"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_track"
+        android:id="@+id/action_clear_history"
         android:orderInCategory="100"
-        android:title="Track Medicine"
+        android:title="Clear History"
         app:showAsAction="never" />
 
 </menu>

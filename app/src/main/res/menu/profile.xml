@@ -1,35 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <item
-        android:id="@+id/action_buy"
+        android:id="@+id/action_edit_profile"
         android:orderInCategory="100"
-        android:title="Buy Medicine"
+        android:title="Edit Profile"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_sell"
+        android:id="@+id/action_change_email"
         android:orderInCategory="100"
-        android:title="Sell Medicine"
+        android:title="Change E-mail"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_rewards"
+        android:id="@+id/action_change_password"
         android:orderInCategory="100"
-        android:title="Rewards"
+        android:title="Change Password"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_orders"
+        android:id="@+id/action_delete_account"
         android:orderInCategory="100"
-        android:title="My Orders"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_track"
-        android:orderInCategory="100"
-        android:title="Track Medicine"
+        android:title="Delete Account"
         app:showAsAction="never" />
 
 </menu>

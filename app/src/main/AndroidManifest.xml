@@ -12,7 +12,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CollectionCentreRegActivity"></activity>
+        <activity android:name=".EditProfile"></activity>
+        <activity
+            android:name=".Settings"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Profile"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".CollectionCentreRegActivity" />
         <activity android:name=".OrdersActivity" />
         <activity android:name=".RewardsActivity" />
         <activity android:name=".ForgetPassword" />

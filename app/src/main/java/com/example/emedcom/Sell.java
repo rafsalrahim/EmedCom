@@ -1,9 +1,12 @@
 package com.example.emedcom;
 
+import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -145,12 +148,37 @@ public class Sell extends AppCompatActivity {
                             if (task.isSuccessful()) {
 
                                 FirebaseDatabase.getInstance().getReference("Collection_accpt_details").child(userDist)
-                                        .child(medname + compname).setValue(info).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        .child(medname +compname).setValue(info).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        Toast.makeText(getApplicationContext(), medname + compname, Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "Medicine Name : " + medname + "Generic Name : " + compname, Toast.LENGTH_SHORT).show();
                                         showMessage(medname);
-                                    }
+
+                                        Intent home = new Intent(getApplicationContext(), Home.class);
+                                        home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                        startActivity(home);
+
+
+                                  /*      FragmentManager home = getSupportFragmentManager();
+                                        HomeFragment fragment = new HomeFragment();
+                                        home.beginTransaction().replace(R.id.container, fragment).commit();   */
+
+                                  /*      HomeFragment fragmentB = new HomeFragment();
+                                        getSupportFragmentManager().beginTransaction()
+                                                .add(R.id.container, fragmentB)
+                                                .addToBackStack(Sell.class.getSimpleName())
+                                                .commit();        */
+
+
+                                        /*
+
+                                        HomeFragment fragment = new HomeFragment();
+                                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                                        transaction.replace(R.id.container, fragment);
+                                        transaction.commit();
+                                         */
+
+                                        }
                                 });
 
 
