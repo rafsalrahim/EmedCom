@@ -31,9 +31,7 @@ import java.util.ArrayList;
 public class Buy extends AppCompatActivity {
 
     ListView listView;
-
     SearchView searchView;
-
 
     FirebaseDatabase mDatabase;
     DatabaseReference mDb,mDbUSer,mDbUSer2;
@@ -60,7 +58,9 @@ public class Buy extends AppCompatActivity {
         userKey = user.getUid();
         ab = new String [30];
         listView = (ListView) findViewById(R.id.list);
+
         searchView = (SearchView) findViewById(R.id.searchView);
+
         list=new ArrayList<>();
         adapter=new ArrayAdapter<String>(this,R.layout.list_buy,R.id.ltext,list);
       //  adapter=new ArrayAdapter<String>(this,R.layout.activity_buy,R.id.ltext,list);
@@ -147,6 +147,23 @@ public class Buy extends AppCompatActivity {
 //Delay time should be set since the data is loaded correctly within time
 
               ////////
+
+        // search view codes
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+
+        });
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
            @Override
