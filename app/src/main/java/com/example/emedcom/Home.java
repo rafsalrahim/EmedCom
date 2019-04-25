@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,15 +27,43 @@ public class Home extends AppCompatActivity
     FirebaseAuth mAuth;
     FirebaseUser currentUser;
 
+    Button med_sell;
+    Button med_buy;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        med_sell = (Button) findViewById(R.id.buttonsell);
+        med_buy = (Button) findViewById(R.id.buttonbuy);
+
+        //redirecting to sell page
+        med_sell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent sellIntent = new Intent(getApplicationContext(), Sell.class);
+                startActivity(sellIntent);
+            }
+        });
+
+        //redirecting to buy page
+        med_buy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent buyIntent = new Intent(getApplicationContext(), Buy.class);
+                startActivity(buyIntent);
+            }
+        });
+
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Home");
         setSupportActionBar(toolbar);
+
         //ini
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -92,20 +121,6 @@ public class Home extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
 
-       switch (item.getItemId()) {
-
-           case R.id.action_buy:
-               Toast.makeText(this, "Buy Medicine", Toast.LENGTH_SHORT).show();
-               Intent intent = new Intent(Home.this,Buy.class);
-               startActivity(intent);
-       }
-       switch (item.getItemId()) {
-
-           case R.id.action_sell:
-               Toast.makeText(this, "Sell Medicine", Toast.LENGTH_SHORT).show();
-               Intent intent = new Intent(Home.this,Sell.class);
-               startActivity(intent);
-       }
        switch (item.getItemId()) {
 
            case R.id.action_rewards:
