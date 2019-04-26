@@ -1,5 +1,6 @@
 package com.example.emedcom;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Build;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -26,10 +28,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
+
 public class Sell extends AppCompatActivity {
 
     EditText med_name,com_name,from,quantity,exp_date;
     Button sell;
+
+    Calendar mCurrentDate;
+    int day, month, year;
 
 
     private FirebaseAuth firebaseAuth;
@@ -56,6 +63,33 @@ public class Sell extends AppCompatActivity {
         exp_date=(EditText) findViewById(R.id.med_expiry) ;
         sell = (Button) findViewById(R.id.btnSell);
 
+        mCurrentDate = Calendar.getInstance();
+        day = mCurrentDate.get(Calendar.DAY_OF_MONTH);
+        month = mCurrentDate.get(Calendar.MONTH);
+        year = mCurrentDate.get(Calendar.YEAR);
+
+        month = month+1;
+      //  exp_date.setText(day+"/"+month+"/"+year);
+
+
+        exp_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(Sell.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+                        monthOfYear = monthOfYear+1;
+                        exp_date.setText(dayOfMonth+"/"+monthOfYear+"/"+year);
+                    }
+                },year, month, day);
+                datePickerDialog.show();
+            }
+        });
+
+
+
         firebaseAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
         mDb = mDatabase.getReference();
@@ -74,7 +108,7 @@ public class Sell extends AppCompatActivity {
                    if(usr.getEmail().equals(tet)){
                     userDist = usr.getDistrict();
                     dist=usr.getUser_type();
-                   Toast.makeText(getApplicationContext(), "Hello" +userDist+dist, Toast.LENGTH_SHORT).show();
+                   Toast.makeText(getApplicationContext(), "Hello" + " " +userDist+ " "+dist, Toast.LENGTH_SHORT).show();
                    break;}
                }
             }
@@ -115,90 +149,79 @@ public class Sell extends AppCompatActivity {
 
         if(!"Collection Centre".equals(dist)) {
 
+                sell.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-            sell.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    medname = med_name.getText().toString();
-                    compname = com_name.getText().toString();
-                    frm = from.getText().toString();
-                    qnty = quantity.getText().toString();
-                    expdate = exp_date.getText().toString();
-                    sell_sell = "No";
-                    usr_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                    final sell_info info = new sell_info(
-                            medname,
-                            compname,
-                            frm,
-                            qnty,
-                            sell_sell,
-                            usr_id,
-                            userDist,
-                            expdate
-                    );
-                    Long tsLong = System.currentTimeMillis() / 1000;
-                    final String ts = tsLong.toString();
+                        medname = med_name.getText().toString();
+                        compname = com_name.getText().toString();
+                        frm = from.getText().toString();
+                        qnty = quantity.getText().toString();
+                        expdate = exp_date.getText().toString();
 
-                    FirebaseDatabase.getInstance().getReference("user_med_sell_details")
-                            .child(usr_id).child(medname + qnty)
-                            .setValue(info).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
+                        if (medname.isEmpty() || compname.isEmpty() || frm.isEmpty() || qnty.isEmpty() || expdate.isEmpty()) {
+                            //something goes wrong
+                            //all fields need to be filled
+                            showMessage("Please verify all fields");
 
-                            if (task.isSuccessful()) {
+                        } else {
+                            sell_sell = "No";
+                            usr_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            final sell_info info = new sell_info(
+                                    medname,
+                                    compname,
+                                    frm,
+                                    qnty,
+                                    sell_sell,
+                                    usr_id,
+                                    userDist,
+                                    expdate
+                            );
+                            Long tsLong = System.currentTimeMillis() / 1000;
+                            final String ts = tsLong.toString();
 
-                                FirebaseDatabase.getInstance().getReference("Collection_accpt_details").child(userDist)
-                                        .child(medname +compname).setValue(info).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        Toast.makeText(getApplicationContext(), "Medicine Name : " + medname + "Generic Name : " + compname, Toast.LENGTH_SHORT).show();
-                                        showMessage(medname);
+                            FirebaseDatabase.getInstance().getReference("user_med_sell_details")
+                                    .child(usr_id).child(medname + qnty)
+                                    .setValue(info).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
 
-                                        Intent home = new Intent(getApplicationContext(), Home.class);
-                                        home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                        startActivity(home);
+                                    if (task.isSuccessful()) {
 
+                                        FirebaseDatabase.getInstance().getReference("Collection_accpt_details").child(userDist)
+                                                .child(medname + compname).setValue(info).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                Toast.makeText(getApplicationContext(), "Medicine Name : " + medname + "\nGeneric Name : " + compname, Toast.LENGTH_SHORT).show();
+                                                showMessage(medname);
 
-                                  /*      FragmentManager home = getSupportFragmentManager();
-                                        HomeFragment fragment = new HomeFragment();
-                                        home.beginTransaction().replace(R.id.container, fragment).commit();   */
+                                                Intent home = new Intent(getApplicationContext(), Home.class);
+                                                home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                startActivity(home);
 
-                                  /*      HomeFragment fragmentB = new HomeFragment();
-                                        getSupportFragmentManager().beginTransaction()
-                                                .add(R.id.container, fragmentB)
-                                                .addToBackStack(Sell.class.getSimpleName())
-                                                .commit();        */
-
-
-                                        /*
-
-                                        HomeFragment fragment = new HomeFragment();
-                                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                                        transaction.replace(R.id.container, fragment);
-                                        transaction.commit();
-                                         */
-
-                                        }
-                                });
+                                            }
+                                        });
 
 
-                            } else {
-                                showMessage("Not Saved");
-                                Toast.makeText(Sell.this, task.getException().getMessage(),
-                                        Toast.LENGTH_LONG).show();
-                            }
+                                    } else {
+                                        showMessage("Not Saved");
+                                        Toast.makeText(Sell.this, task.getException().getMessage(),
+                                                Toast.LENGTH_LONG).show();
+                                    }
 
+                                }
+                            });
                         }
-                    });
-                }
-            });
-
+                    }
+                });
 
         }
-        else{
+        else
+            {
             sell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     medname = med_name.getText().toString();
                     compname = com_name.getText().toString();
                     frm = from.getText().toString();

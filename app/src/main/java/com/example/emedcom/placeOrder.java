@@ -1,5 +1,6 @@
 package com.example.emedcom;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -118,25 +119,18 @@ public class placeOrder extends AppCompatActivity {
                         if(task.isSuccessful()) {
 
 
-
-
-
-
-
-
-
                              // test= Integer.parseInt(med.getQuantity().toString());
                              qnt=Integer.parseInt(med.getQuantity().toString())-test2;
                             ///showMessage( String.valueOf(qnt)+"hi" );
                             //Toast.makeText(getApplicationContext(),String.valueOf(qnt)+"hi", Toast.LENGTH_SHORT).show();
-                            /*if(qnt<=0){
+                            if(qnt<=0){
                              sell_sell="Yes";
                             }
                             else{
                                 sell_sell="No";
                             }////*/
                             //user account created successfully
-                          Toast.makeText(getApplicationContext(), "Hello", Toast.LENGTH_SHORT).show();
+                       //   Toast.makeText(getApplicationContext(), "Hello", Toast.LENGTH_SHORT).show();
                             //showMessage( ts );
                             String tt=String.valueOf(qnt);
                             //mDb3=mDatabase.getReference("med_sell_details").child(userKey+med.getMedname());
@@ -147,7 +141,7 @@ public class placeOrder extends AppCompatActivity {
                             String collection = med.getCollection_center();
                             String exp_date = med.getExp_date();
                             //String qnty=quantity.getText().toString();
-                            sell_sell="Yes";
+                          //  sell_sell="Yes";
                             // usr_id=FirebaseAuth.getInstance().getCurrentUser().getUid();
                             sell_info info = new sell_info(
                                     medname,
@@ -169,7 +163,14 @@ public class placeOrder extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
 
                                     if(task.isSuccessful()) {
-                                        showMessage( "Yes i have done it" );
+                                       // showMessage( "Yes i have done it" );
+                                        showMessage("Your have placed order for medicines : \n\n " +medname);
+                                        showMessage("Dear user, please come and collect at your district collection centre");
+                                       // showMessage("Please check your Rewards");
+
+                                        Intent home = new Intent(getApplicationContext(), Home.class);
+                                        home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                        startActivity(home);
                                     }
 
                                     else {

@@ -3,6 +3,7 @@ package com.example.emedcom;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -20,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -49,10 +51,13 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText userEmail,userPassword,userConfirmPassword,userName,userPhone;
     private ProgressBar loadingProgress;
     private Button regBtn,buttonLogin;
+    private RadioButton store, centre, user;
 
     private FirebaseAuth mAuth;
 
     DatabaseReference databaseReference;
+
+    String user_type = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,35 +75,18 @@ public class RegisterActivity extends AppCompatActivity {
         loadingProgress = (ProgressBar) findViewById(R.id.regProgressBar);
         regBtn = (Button) findViewById(R.id.regBtn);
         buttonLogin = (Button) findViewById(R.id.buttonLogin);
+        store = (RadioButton) findViewById(R.id.id_store);
+        centre = (RadioButton) findViewById(R.id.id_centre);
+        user = (RadioButton) findViewById(R.id.id_user);
+
+        user.setChecked(true);
+
 
         loadingProgress.setVisibility(View.INVISIBLE);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("registration");
-
-
         mAuth = FirebaseAuth.getInstance();
 
-
-        //drop down list of type of users
-        final String[] items = new String[] {"User Type", "User / Medical Store"};
-        final Spinner spinner = (Spinner) findViewById(R.id.myDistrict);
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, items);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
-                items[0] = "Collection Centre";
-                String selectedItem = items[position];
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-            }
-        });
 
         final Spinner spinnerdis = (Spinner) findViewById(R.id.myDistrict);
         //drop down list of different districts
@@ -123,9 +111,12 @@ public class RegisterActivity extends AppCompatActivity {
         adapterdis.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerdis.setAdapter(adapterdis);
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerdis.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View arg1, int position, long id) {
+
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.rgb(76, 156, 210));
+                ((TextView) parent.getChildAt(0)).setTextSize(18);
                 districts[0] = "Thiruvananthapuram";
                 String selectedItem = districts[position];
 
@@ -135,8 +126,6 @@ public class RegisterActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> arg0) {
             }
         });
-
-
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,8 +149,20 @@ public class RegisterActivity extends AppCompatActivity {
                 final String phone = userPhone.getText().toString();
                 final String password = userPassword.getText().toString();
                 final String confirmPassword = userConfirmPassword.getText().toString();
-                final String spinneruser = (String) spinner.getSelectedItem().toString();
                 final String spinnerdistrict = (String) spinnerdis.getSelectedItem().toString();
+
+                if(store.isChecked()) {
+
+                    user_type = "Medical Store";
+                }
+                if(centre.isChecked()) {
+
+                    user_type = "Collection Centre";
+                }
+                if(user.isChecked()) {
+
+                    user_type = "Normal User";
+                }
 
                 if( email.isEmpty() || name.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || phone.isEmpty()) {
                     //something goes wrong
@@ -173,8 +174,8 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 else if(phone.length()!=10) {
 
-                    userPassword.setError("Phone number length must be 10");
-                    userPassword.requestFocus();
+                    userPhone.setError("Phone number length must be 10");
+                    userPhone.requestFocus();
                     // showMessage("Phone number length must be 10");
                     regBtn.setVisibility(View.VISIBLE);
                     loadingProgress.setVisibility(View.INVISIBLE);
@@ -192,7 +193,7 @@ public class RegisterActivity extends AppCompatActivity {
                 {
                     //everything is ok and all fields are filled, now we can start creating user account
                     //it will create an user if the email is valid
-                    CreateUserAccount(email,name,password,phone,spinneruser,spinnerdistrict);
+                    CreateUserAccount(email,name,password,phone,user_type,spinnerdistrict);
                 }
             }
         });
@@ -221,7 +222,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void CreateUserAccount(final String email, final String name, final String password
-            , final String phone, final String spinneruser, final String spinnerdistrict) {
+            , final String phone, final String user_type, final String spinnerdistrict) {
 
         // this method creates an user with specific email and password
 
@@ -237,7 +238,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     name,
                                     email,
                                     phone,
-                                    spinneruser,
+                                    user_type,
                                     spinnerdistrict
                             );
 
@@ -255,7 +256,7 @@ public class RegisterActivity extends AppCompatActivity {
                                                     if(task.isSuccessful()) {
 
                                                         //user account created successfully
-                                                        showMessage("Account Created Successfully!!! please check your mail");
+                                                        showMessage("Account Created Successfully!!! \nPlease check your mail and verify");
                                                         //after we create a user account we need to update profile picture and name
                                                         updateUserInfo( name , pickedImgUri,mAuth.getCurrentUser());
 
@@ -325,6 +326,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                                             //user info updated successfully
                                             showMessage("Registration Complete");
+                                            showMessage("You are on the home page now");
                                             updateUI();
                                         }
 

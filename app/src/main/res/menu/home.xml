@@ -3,18 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_buy"
-        android:orderInCategory="100"
-        android:title="Buy Medicine"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_sell"
-        android:orderInCategory="100"
-        android:title="Sell Medicine"
-        app:showAsAction="never" />
-
-    <item
         android:id="@+id/action_rewards"
         android:orderInCategory="100"
         android:title="Rewards"

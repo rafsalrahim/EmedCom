@@ -49,23 +49,16 @@
                 android:inputType="text"
                 android:textColorHint="@android:color/holo_blue_dark" />
 
-            <EditText
-                android:id="@+id/condition"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:hint="Condition"
-                android:inputType="text"
-                android:textColorHint="@android:color/holo_blue_dark" />
 
             <EditText
                 android:id="@+id/from"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:hint="From"
+                android:hint="Condition"
                 android:inputType="text"
-                android:textColorHint="@android:color/holo_blue_dark" />
+                android:textColorHint="@android:color/holo_blue_dark"/>
+
 
             <EditText
                 android:id="@+id/quantity"
@@ -76,7 +69,7 @@
                 android:inputType="number"
                 android:textColorHint="@android:color/holo_blue_dark"/>
 
-            <EditText
+        <!--    <EditText
                 android:id="@+id/med_gram"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -92,7 +85,7 @@
                 android:fontFamily="sans-serif"
                 android:hint="Cost"
                 android:inputType="number"
-                android:textColorHint="@android:color/holo_blue_dark" />
+                android:textColorHint="@android:color/holo_blue_dark" /> -->
 
             <EditText
                 android:id="@+id/med_expiry"
@@ -103,26 +96,17 @@
                 android:inputType="date"
                 android:textColorHint="@android:color/holo_blue_dark" />
 
-            <EditText
-                android:id="@+id/contact"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:hint="Contact"
-                android:inputType="phone"
-                android:textColorHint="@android:color/holo_blue_dark" />
-
             <Button
                 android:id="@+id/btnSell"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_margin="7dp"
-                android:text="SELL"
-                android:textStyle="bold"
                 android:background="@android:color/holo_blue_dark"
+                android:gravity="center"
                 android:inputType="textCapWords"
-                android:textColor="@android:color/white"/>
+                android:text="SELL"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
 
         </LinearLayout>
 

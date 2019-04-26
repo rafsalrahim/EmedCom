@@ -92,7 +92,8 @@ public class Buy extends AppCompatActivity {
                                 med=ds.getValue(MedData.class);
                                 if(med.getSell().equals("No") ){  //&& med.getFrom().equals(userDist)
                                     //Toast.makeText(Buy.this, "  "+med.from, Toast.LENGTH_SHORT).show();
-                                    list.add(med.getMedname().toString()+"  "+med.getQuantity()+"  "+med.getSell().toString());
+                                 //   list.add(med.getMedname().toString()+"  "+med.getQuantity()+"  "+med.getSell().toString());
+                                    list.add(med.getMedname().toString()+" - "+med.getQuantity());
                                     ab[i]=med.getQuantity();
                                     i=i+1;
                                 }
