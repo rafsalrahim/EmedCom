@@ -3,6 +3,7 @@ package com.example.emedcom;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -20,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -73,18 +75,16 @@ public class RegisterActivity extends AppCompatActivity {
         loadingProgress = (ProgressBar) findViewById(R.id.regProgressBar);
         regBtn = (Button) findViewById(R.id.regBtn);
         buttonLogin = (Button) findViewById(R.id.buttonLogin);
-
-
         store = (RadioButton) findViewById(R.id.id_store);
         centre = (RadioButton) findViewById(R.id.id_centre);
         user = (RadioButton) findViewById(R.id.id_user);
+
+        user.setChecked(true);
 
 
         loadingProgress.setVisibility(View.INVISIBLE);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("registration");
-
-
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -113,7 +113,10 @@ public class RegisterActivity extends AppCompatActivity {
 
         spinnerdis.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View arg1, int position, long id) {
+
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.rgb(76, 156, 210));
+                ((TextView) parent.getChildAt(0)).setTextSize(18);
                 districts[0] = "Thiruvananthapuram";
                 String selectedItem = districts[position];
 
@@ -123,8 +126,6 @@ public class RegisterActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> arg0) {
             }
         });
-
-
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,8 +174,8 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 else if(phone.length()!=10) {
 
-                    userPassword.setError("Phone number length must be 10");
-                    userPassword.requestFocus();
+                    userPhone.setError("Phone number length must be 10");
+                    userPhone.requestFocus();
                     // showMessage("Phone number length must be 10");
                     regBtn.setVisibility(View.VISIBLE);
                     loadingProgress.setVisibility(View.INVISIBLE);

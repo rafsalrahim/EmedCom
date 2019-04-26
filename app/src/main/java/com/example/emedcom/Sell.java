@@ -108,7 +108,7 @@ public class Sell extends AppCompatActivity {
                    if(usr.getEmail().equals(tet)){
                     userDist = usr.getDistrict();
                     dist=usr.getUser_type();
-                   Toast.makeText(getApplicationContext(), "Hello" +userDist+dist, Toast.LENGTH_SHORT).show();
+                   Toast.makeText(getApplicationContext(), "Hello" + " " +userDist+ " "+dist, Toast.LENGTH_SHORT).show();
                    break;}
                }
             }
@@ -192,32 +192,12 @@ public class Sell extends AppCompatActivity {
                                                 .child(medname + compname).setValue(info).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
-                                                Toast.makeText(getApplicationContext(), "Medicine Name : " + medname + "Generic Name : " + compname, Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getApplicationContext(), "Medicine Name : " + medname + "\nGeneric Name : " + compname, Toast.LENGTH_SHORT).show();
                                                 showMessage(medname);
 
                                                 Intent home = new Intent(getApplicationContext(), Home.class);
                                                 home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                 startActivity(home);
-
-
-                                  /*      FragmentManager home = getSupportFragmentManager();
-                                        HomeFragment fragment = new HomeFragment();
-                                        home.beginTransaction().replace(R.id.container, fragment).commit();   */
-
-                                  /*      HomeFragment fragmentB = new HomeFragment();
-                                        getSupportFragmentManager().beginTransaction()
-                                                .add(R.id.container, fragmentB)
-                                                .addToBackStack(Sell.class.getSimpleName())
-                                                .commit();        */
-
-
-                                        /*
-
-                                        HomeFragment fragment = new HomeFragment();
-                                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                                        transaction.replace(R.id.container, fragment);
-                                        transaction.commit();
-                                         */
 
                                             }
                                         });
@@ -236,10 +216,12 @@ public class Sell extends AppCompatActivity {
                 });
 
         }
-        else{
+        else
+            {
             sell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     medname = med_name.getText().toString();
                     compname = com_name.getText().toString();
                     frm = from.getText().toString();
